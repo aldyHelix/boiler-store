@@ -7,11 +7,6 @@ return [
     'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
     'route' => null,
     'isActive' => null,
-    /**
-     * You can use fontawesome or svg file, the svg file is viewable in the resources/assets/icons directory
-     * Example to Custom SVG file 'icon' => 'somefolder.customsvgfile' --> resources/assets/icons/somefolder/customsvgfile.svg
-     * Exampe for fontawesome 'icon' => 'fas fa-user',
-     */
     'icon' => 'user-group',
     'id' => '',
     'gates' => [],
@@ -21,11 +16,6 @@ return [
         'gate' => 'administrator.account.admin.index',
         'name' => 'User Admin',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-        /**
-         * Declaration route Example
-         * ['administrator.account.admin.show', ['uuid-uuid-uuid', 'foo' => 'bar']]
-         * --> https://domain.com/administrator/account/admin/uuid-uuid-uuid?foo=bar
-         */
         'route' => ['administrator.account.admin.index', []],
         'isActive' => 'account/admin*',
         'id' => '',
@@ -54,18 +44,15 @@ return [
   [
     'gate' => 'administrator.master-data',
     'name' => 'Master Data',
-    'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
     'route' => null,
     'isActive' => 'master-data*',
     'icon' => 'database',
     'id' => '',
     'gates' => [],
     'submenus' => [
-
       [
         'gate' => 'administrator.master-data.category.index',
         'name' => 'Category',
-        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         'route' => ['administrator.master-data.category.index', []],
         'isActive' => 'master-data/category*',
         'icon' => 'folder',
@@ -85,6 +72,31 @@ return [
             'gate' => 'administrator.master-data.category.destroy',
             'title' => 'Delete Category',
             'description' => 'User can delete category'
+          ]
+        ],
+      ],
+      [
+        'gate' => 'administrator.master-data.size.index',
+        'name' => 'Size',
+        'route' => ['administrator.master-data.size.index', []],
+        'isActive' => 'master-data/size*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.size.create',
+            'title' => 'Create Size',
+            'description' => 'User can create new size'
+          ],
+          [
+            'gate' => 'administrator.master-data.size.update',
+            'title' => 'Update Size',
+            'description' => 'User can update size'
+          ],
+          [
+            'gate' => 'administrator.master-data.size.destroy',
+            'title' => 'Delete Size',
+            'description' => 'User can delete size'
           ]
         ],
       ],
