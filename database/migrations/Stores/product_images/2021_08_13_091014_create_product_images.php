@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubmissionTypeTable extends Migration
+class CreateProductImages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSubmissionTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_type', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->string('submission_code');
-            $table->string('submission_title');
-            $table->string('submission_image');
-            $table->text('submission_description');
-            $table->tinyInteger('is_active')->default(1);
+            $table->foreignId('product_id')->constrained();
+            $table->text('image_url')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateSubmissionTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_type');
+        Schema::dropIfExists('product_images');
     }
 }

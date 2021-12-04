@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMarriageStatusTable extends Migration
+class CreateProductCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateMarriageStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('marriage_status', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('marriage_code');
-            $table->string('marriage_title');
-            $table->string('marriage_image');
-            $table->text('marriage_description');
-            $table->tinyInteger('is_active')->default(1);
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateMarriageStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marriage_status');
+        Schema::dropIfExists('product_categories');
     }
 }

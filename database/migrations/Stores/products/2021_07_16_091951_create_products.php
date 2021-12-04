@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistrictTable extends Migration
+class CreateProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateDistrictTable extends Migration
      */
     public function up()
     {
-        Schema::create('district', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_city')->constrained('city');
-            $table->string('district_code');
-            $table->string('district_title');
-            $table->string('district_image');
-            $table->text('district_description');
+            $table->string('product_code', 100)->unique();
+            $table->string('product_name', 100);
+            $table->char('condition', 1);
+            $table->smallInteger('minimal_order')->default(1);
+            $table->text('image')->nullable();
+            $table->text('description')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateDistrictTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('district');
+        Schema::dropIfExists('products');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatingTable extends Migration
+class CreateProductImageColor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateRatingTable extends Migration
      */
     public function up()
     {
-        Schema::create('rating', function (Blueprint $table) {
+        Schema::create('product_image_colors', function (Blueprint $table) {
             $table->id();
-            $table->string('rating_code');
-            $table->integer('rating_rate');
-            $table->string('rating_title');
-            $table->string('rating_image');
-            $table->text('rating_description');
-            $table->tinyInteger('is_active')->default(1);
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_color_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateRatingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rating');
+        Schema::dropIfExists('product_image_colors');
     }
 }
