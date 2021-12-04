@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomFacilityTable extends Migration
+class CreateProductLink extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateRoomFacilityTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_facility', function (Blueprint $table) {
+        Schema::create('product_links', function (Blueprint $table) {
             $table->id();
-            $table->string('room_facility_code');
-            $table->string('room_facility_title');
-            $table->string('room_facility_image');
-            $table->text('room_facility_description');
-            $table->tinyInteger('is_active')->default(1);
+            $table->foreignId('product_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateRoomFacilityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_facility');
+        Schema::dropIfExists('product_links');
     }
 }

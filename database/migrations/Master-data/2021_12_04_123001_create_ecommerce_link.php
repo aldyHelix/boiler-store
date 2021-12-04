@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomBadgeTable extends Migration
+class CreateEcommerceLink extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateRoomBadgeTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_badge', function (Blueprint $table) {
+        Schema::create('ecommerce_links', function (Blueprint $table) {
             $table->id();
-            $table->string('room_badge_code');
-            $table->string('room_badge_title');
-            $table->string('room_badge_image');
-            $table->text('room_badge_description');
+            $table->string('ecommerce_code');
+            $table->string('ecommerce_title');
+            $table->string('ecommerce_image');
+            $table->text('ecommerce_description');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateRoomBadgeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_badge');
+        Schema::dropIfExists('ecommerce_links');
     }
 }

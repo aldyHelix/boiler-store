@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobTable extends Migration
+class CreateProductModel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateJobTable extends Migration
      */
     public function up()
     {
-        Schema::create('job', function (Blueprint $table) {
+        Schema::create('product_models', function (Blueprint $table) {
             $table->id();
-            $table->string('job_code');
-            $table->string('job_title');
-            $table->string('job_image');
-            $table->text('job_description');
-            $table->tinyInteger('is_active')->default(1);
+            $table->foreignId('product_id')->constrained();
+            $table->string('model_name', 100);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateJobTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job');
+        Schema::dropIfExists('product_models');
     }
 }

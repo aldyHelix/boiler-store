@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePublicFacilityTable extends Migration
+class CreateSize extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePublicFacilityTable extends Migration
      */
     public function up()
     {
-        Schema::create('public_facility', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('public_facility_code');
-            $table->string('public_facility_title');
-            $table->string('public_facility_image');
-            $table->text('public_facility_description');
+            $table->string('size_code');
+            $table->string('size_title');
+            $table->string('size_image');
+            $table->text('size_description');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreatePublicFacilityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('public_facility');
+        Schema::dropIfExists('sizes');
     }
 }
