@@ -1,16 +1,25 @@
-installation
+# installation
 
 composer install
-php artisan migrate
+php artisan migrate --path=database/migarations/*/*
 npm install && npm ci && npm run dev
 
+# Using Library
+* hexters/ladmin
+* browner12/helpers
+* laravel/jetstream
+* laravel/sanctum
+* laravel/tinker
+* livewire/livewire
+* nwidart/laravel-modules
 
-#create new Feature
+# create new Feature
+`php artisan module` for help 
 `php artisan module:make [Feature Name]`
 `php artisan make:datatables ../../Modules/[Feature Name]/Entities/[Feature Name]Datatables` for making datatables *dont forget change namespace*
 
 
-#naming branch
+# naming branch
 `module_[feature name]` for new modules
 `bugfix_[bugfix name]_[issue number]` for bugfixing issue
 `hotfix_[hotfix name]_[issue number]` for hotfix issue
@@ -22,7 +31,7 @@ npm install && npm ci && npm run dev
 `v[number sequence].0.0` for BIG CHANGE Release  
 
 
-#Pull Request
+# Pull Request
 always create PR after new module or any changes
 format PR Name : [Programmer Name] - Changes name
 use  fixed if fixing issue or any changes
