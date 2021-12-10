@@ -1,10 +1,10 @@
 # installation
 
-composer install
-
-`php artisan migrate --path=database/migarations/*/*`
-
-npm install && npm ci && npm run dev
+1. ``` composer install ```
+2. ``` php artisan key:generate ```
+3. SETUP your `.env`
+4. ``` php artisan migrate --path=database/migarations/*/* ```
+5. ``` npm install && npm ci && npm run dev ```
 
 # Using Library
 * hexters/ladmin
@@ -22,6 +22,10 @@ npm install && npm ci && npm run dev
 
 `php artisan make:datatables ../../Modules/[Feature Name]/Entities/[Feature Name]Datatables` for making datatables *dont forget change namespace*
 
+this repository build with Services, Repositories, Helpers design pattern, you can take care of this architecture by following category module.
+build in menu management system, log, login, user role permission or ACL, or etc by hexter/ladmin. you must not concern into this problem and skipped this right?.
+
+*happy coding*
 
 # naming branch
 - `module_[feature name]` for new modules
