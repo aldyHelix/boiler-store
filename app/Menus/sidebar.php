@@ -4,7 +4,7 @@ return [
   [
     'gate' => 'administrator.account',
     'name' => 'Account',
-    'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+    'description' => 'Account Management System',
     'route' => null,
     'isActive' => null,
     'icon' => 'user-group',
@@ -15,7 +15,6 @@ return [
       [
         'gate' => 'administrator.account.admin.index',
         'name' => 'User Admin',
-        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         'route' => ['administrator.account.admin.index', []],
         'isActive' => 'account/admin*',
         'id' => '',
@@ -100,13 +99,37 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.ecommerce-link.index',
+        'name' => 'Ecommerce Link',
+        'route' => ['administrator.master-data.ecommerce-link.index', []],
+        'isActive' => 'master-data/ecommerce-link*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.ecommerce-link.create',
+            'title' => 'Create Size',
+            'description' => 'User can create new ecommerce-link'
+          ],
+          [
+            'gate' => 'administrator.master-data.ecommerce-link.update',
+            'title' => 'Update Size',
+            'description' => 'User can update ecommerce-link'
+          ],
+          [
+            'gate' => 'administrator.master-data.ecommerce-link.destroy',
+            'title' => 'Delete Size',
+            'description' => 'User can delete ecommerce-link'
+          ]
+        ],
+      ],
     ]
   ],
 
   [
     'gate' => 'administrator.access',
     'name' => 'Access',
-    'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
     'route' => null,
     'isActive' => null,
     'icon' => 'lock-open',
@@ -117,7 +140,6 @@ return [
       [
         'gate' => 'administrator.access.role.index',
         'name' => 'Role',
-        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         'route' => ['administrator.access.role.index', []],
         'isActive' => 'access/role*',
         'id' => '',
@@ -143,7 +165,6 @@ return [
       [
         'gate' => 'administrator.access.permission.index',
         'name' => 'Permission',
-        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         'route' => ['administrator.access.permission.index', []],
         'isActive' => 'access/permission*',
         'id' => '',
