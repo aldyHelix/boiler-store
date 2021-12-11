@@ -124,6 +124,31 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.product.index',
+        'name' => 'Product',
+        'route' => ['administrator.master-data.product.index', []],
+        'isActive' => 'master-data/product*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.product.create',
+            'title' => 'Create Size',
+            'description' => 'User can create new product'
+          ],
+          [
+            'gate' => 'administrator.master-data.product.update',
+            'title' => 'Update Size',
+            'description' => 'User can update product'
+          ],
+          [
+            'gate' => 'administrator.master-data.product.destroy',
+            'title' => 'Delete Size',
+            'description' => 'User can delete product'
+          ]
+        ],
+      ],
     ]
   ],
 

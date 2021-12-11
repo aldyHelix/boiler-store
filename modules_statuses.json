@@ -1,5 +1,6 @@
 {
     "Category": true,
     "Size": true,
-    "EcommerceLink": true
+    "EcommerceLink": true,
+    "Product": true
 }

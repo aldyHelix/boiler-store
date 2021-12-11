@@ -19,6 +19,7 @@ class CreateProducts extends Migration
             $table->string('product_name', 100);
             $table->char('condition', 1);
             $table->smallInteger('minimal_order')->default(1);
+            $table->smallInteger('product_visit')->default(1);
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('is_active')->default(1);
