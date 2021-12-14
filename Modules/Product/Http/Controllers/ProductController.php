@@ -5,16 +5,31 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Repositories\ProductRepository;
+use Modules\Product\Entities\ProductDatatables;
+use GuzzleHttp\Psr7\UploadedFile;
+use Hexters\Ladmin\Exceptions\LadminException;
+use Modules\Product\Entities\Product;
+use Modules\Product\Entities\ProductDetail;
 
 class ProductController extends Controller
 {
+    // protected $repository;
+
+    // public function __construct(ProductRepository $repository) {
+    //     $this->repository = $repository;
+    // }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return view('product::index');
+        ladmin()->allow('administrator.master-data.product.index');
+        $data['product'] = Product::with('detail')->first();
+
+        return ProductDataTables::view('product::index', $data);
     }
 
     /**
