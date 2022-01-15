@@ -14,11 +14,11 @@ use Modules\Product\Entities\ProductDetail;
 
 class ProductController extends Controller
 {
-    // protected $repository;
+    protected $repository;
 
-    // public function __construct(ProductRepository $repository) {
-    //     $this->repository = $repository;
-    // }
+    public function __construct(ProductRepository $repository) {
+        $this->repository = $repository;
+    }
 
     /**
      * Display a listing of the resource.
@@ -38,7 +38,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        ladmin()->allow('administrator.master-data.product.create');
+        $data['product'] = new Product();
+
+        return view('product::create', $data);
     }
 
     /**
@@ -68,7 +71,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('product::edit');
+        ladmin()->allow('administrator.master-data.product.update');
+        $data['product'] = $this->repository->getProductById($id);
+        return view('product::edit', $data);
     }
 
     /**

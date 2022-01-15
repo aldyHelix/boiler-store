@@ -36,7 +36,7 @@
         ->addColumn('image', function($item){
             $image = isset($item->image) ? 'uploads/'.$item->image : 'default/default.png';
             $url= asset('storage/images/'.$image);
-            return '<img class="img-thumbnail p-2" width="75" src="'.$url.'" alt="product-image"></img>';
+            return '<img class="img-thumbnail m-2" width="75" src="'.$url.'" alt="product-image"></img>';
         })
         ->addColumn('selling_price', function($item) {
           return $item->detail->selling_price;
