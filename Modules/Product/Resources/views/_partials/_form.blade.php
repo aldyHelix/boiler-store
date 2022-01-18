@@ -22,7 +22,10 @@
 <h3>Product Variant</h3>
 <br>
 <x-ladmin-form-group name="ecommerce_link" label="Product Ecommerce Link">
-
+    <select class="select" multiple>
+        <option value="1" data-mdb-icon="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp">Tokopedia</option>
+        <option value="2" data-mdb-icon="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp">Shopee</option>
+    </select>
 </x-ladmin-form-group>
 <x-ladmin-form-group name="categories" label="Product Category">
     @livewire('category')
@@ -130,10 +133,9 @@
     <h5>Product Images</h5>
     <br>
     <x-ladmin-form-group name="product_image" label="Other Image">
-        <input type="text" class="form-control">
-    </x-ladmin-form-group>
-    <x-ladmin-form-group name="product_image_colors" label="Product Image with Color">
-        <input type="text" class="form-control">
+        {{-- <input type="text" class="form-control"> --}}
+        @include('components.multiple_image_upload')
     </x-ladmin-form-group>
     <hr>
+</div>
     @include('components.is_active')

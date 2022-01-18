@@ -15,7 +15,7 @@ class Category extends Component
         'Chemical',
         'Dairy Product',
     ];
-
+    public $category = [];
     public function render()
     {
         return view('livewire.category');
