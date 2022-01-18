@@ -110,6 +110,31 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.signature-player.index',
+        'name' => 'Signature Player',
+        'route' => ['administrator.master-data.signature-player.index', []],
+        'isActive' => 'master-data/signature-player*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.signature-player.create',
+            'title' => 'Create Signature Player',
+            'description' => 'User can create new signature-player'
+          ],
+          [
+            'gate' => 'administrator.master-data.signature-player.update',
+            'title' => 'Update Signature Player',
+            'description' => 'User can update signature-player'
+          ],
+          [
+            'gate' => 'administrator.master-data.signature-player.destroy',
+            'title' => 'Delete Signature Player',
+            'description' => 'User can delete signature-player'
+          ]
+        ],
+      ],
     ]
   ],
   [
