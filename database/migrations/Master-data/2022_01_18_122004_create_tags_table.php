@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductImageColor extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateProductImageColor extends Migration
      */
     public function up()
     {
-        Schema::create('product_image_colors', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
-            $table->foreignId('product_color_id')->constrained();
+            $table->string('tag_code');
+            $table->string('tag_title');
+            $table->string('tag_image');
+            $table->text('tag_description');
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateProductImageColor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_image_colors');
+        Schema::dropIfExists('tags');
     }
 }
