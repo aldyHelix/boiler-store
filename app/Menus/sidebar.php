@@ -2,45 +2,6 @@
 
 return [
   [
-    'gate' => 'administrator.account',
-    'name' => 'Account',
-    'description' => 'Account Management System',
-    'route' => null,
-    'isActive' => null,
-    'icon' => 'user-group',
-    'id' => '',
-    'gates' => [],
-    'submenus' => [
-
-      [
-        'gate' => 'administrator.account.admin.index',
-        'name' => 'User Admin',
-        'route' => ['administrator.account.admin.index', []],
-        'isActive' => 'account/admin*',
-        'id' => '',
-        'gates' => [
-          [
-            'gate' => 'administrator.account.admin.create',
-            'title' => 'Create admin',
-            'description' => 'User can create new admin'
-          ],
-          [
-            'gate' => 'administrator.account.admin.update',
-            'title' => 'Update admin',
-            'description' => 'User can update admin'
-          ],
-          [
-            'gate' => 'administrator.account.admin.destroy',
-            'title' => 'Delete account',
-            'description' => 'User can delete account'
-          ]
-        ],
-      ]
-
-    ]
-  ],
-
-  [
     'gate' => 'administrator.master-data',
     'name' => 'Master Data',
     'route' => null,
@@ -109,24 +70,48 @@ return [
         'gates' => [
           [
             'gate' => 'administrator.master-data.ecommerce-link.create',
-            'title' => 'Create Size',
+            'title' => 'Create Ecommerce Link',
             'description' => 'User can create new ecommerce-link'
           ],
           [
             'gate' => 'administrator.master-data.ecommerce-link.update',
-            'title' => 'Update Size',
+            'title' => 'Update Ecommerce Link',
             'description' => 'User can update ecommerce-link'
           ],
           [
             'gate' => 'administrator.master-data.ecommerce-link.destroy',
-            'title' => 'Delete Size',
+            'title' => 'Delete Ecommerce Link',
             'description' => 'User can delete ecommerce-link'
+          ]
+        ],
+      ],
+      [
+        'gate' => 'administrator.master-data.brand.index',
+        'name' => 'Brand',
+        'route' => ['administrator.master-data.brand.index', []],
+        'isActive' => 'master-data/brand*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.brand.create',
+            'title' => 'Create Brand',
+            'description' => 'User can create new brand'
+          ],
+          [
+            'gate' => 'administrator.master-data.brand.update',
+            'title' => 'Update Brand',
+            'description' => 'User can update brand'
+          ],
+          [
+            'gate' => 'administrator.master-data.brand.destroy',
+            'title' => 'Delete Brand',
+            'description' => 'User can delete brand'
           ]
         ],
       ],
     ]
   ],
-
   [
     'gate' => 'administrator.access',
     'name' => 'Access',
@@ -136,8 +121,42 @@ return [
     'id' => '',
     'gates' => [],
     'submenus' => [
-
-      [
+    [
+        'gate' => 'administrator.account',
+        'name' => 'Account',
+        'description' => 'Account Management System',
+        'route' => null,
+        'isActive' => null,
+        'id' => '',
+        'gates' => [],
+        'submenus' => [
+            [
+            'gate' => 'administrator.account.admin.index',
+            'name' => 'User Admin',
+            'route' => ['administrator.account.admin.index', []],
+            'isActive' => 'account/admin*',
+            'id' => '',
+            'gates' => [
+                    [
+                    'gate' => 'administrator.account.admin.create',
+                    'title' => 'Create admin',
+                    'description' => 'User can create new admin'
+                    ],
+                    [
+                    'gate' => 'administrator.account.admin.update',
+                    'title' => 'Update admin',
+                    'description' => 'User can update admin'
+                    ],
+                    [
+                    'gate' => 'administrator.account.admin.destroy',
+                    'title' => 'Delete account',
+                    'description' => 'User can delete account'
+                    ]
+                ],
+            ]
+        ]
+    ],
+    [
         'gate' => 'administrator.access.role.index',
         'name' => 'Role',
         'route' => ['administrator.access.role.index', []],
