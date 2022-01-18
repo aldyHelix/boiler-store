@@ -13,7 +13,7 @@ class CreateSignaturePlayerTable extends Migration
      */
     public function up()
     {
-        Schema::create('signature_player', function (Blueprint $table) {
+        Schema::create('signature_players', function (Blueprint $table) {
             $table->id();
             $table->string('signature_code');
             $table->string('signature_title');
@@ -32,6 +32,6 @@ class CreateSignaturePlayerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('signature_player');
+        Schema::dropIfExists('signature_players');
     }
 }

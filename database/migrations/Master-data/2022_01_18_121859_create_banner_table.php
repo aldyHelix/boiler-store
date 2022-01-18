@@ -13,13 +13,12 @@ class CreateBannerTable extends Migration
      */
     public function up()
     {
-        Schema::create('banner', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('banner_image');
             $table->integer('order');
             $table->text('banner_description');
             $table->text('banner_url');
-            $table->tinyInteger('is_active')->default(1);
             $table->tinyInteger('is_headline')->default(1);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
@@ -33,6 +32,6 @@ class CreateBannerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banner');
+        Schema::dropIfExists('banners');
     }
 }
