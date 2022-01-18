@@ -3,8 +3,13 @@
 1. ``` composer install ```
 2. ``` php artisan key:generate ```
 3. SETUP your `.env`
-4. ``` php artisan migrate --path=database/migarations/*/* ```
+4. ``` php artisan migrate --path=database/migrations/*/* ```
 5. ``` npm install && npm ci && npm run dev ```
+
+Updating `migrations`
+``` php artisan migrate:fresh --seed```
+``` php artisan migrate --path=database/migrations/* ```
+``` php artisan migrate --path=database/migrations/*/* ```
 
 # Using Library
 * hexters/ladmin
