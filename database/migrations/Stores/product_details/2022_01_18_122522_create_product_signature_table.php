@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductLink extends Migration
+class CreateProductSignatureTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateProductLink extends Migration
      */
     public function up()
     {
-        Schema::create('product_links', function (Blueprint $table) {
+        Schema::create('product_signature', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
-            $table->foreignId('ecommerce_link_id')->constrained();
-            $table->string('link_title', 100);
-            $table->string('link_url', 100);
+            $table->foreignId('signature_player_id')->constrained();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateProductLink extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_links');
+        Schema::dropIfExists('product_signature');
     }
 }

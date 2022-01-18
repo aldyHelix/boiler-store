@@ -16,6 +16,7 @@ class CreateProductDetails extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('brand_id')->constrained();
             $table->integer('long_dimension')->nullable();
             $table->integer('wide_dimension')->nullable();
             $table->integer('hight_dimension')->nullable();
@@ -23,7 +24,8 @@ class CreateProductDetails extends Migration
             $table->integer('qty');
             $table->double('base_price', 8, 2);
             $table->double('list_price', 8, 2)->default(0);
-            $table->double('selling_price', 8, 2);
+            $table->double('retail_price', 8, 2);
+            $table->double('after_discount_price', 8, 2);
             $table->text('description')->nullable();
             $table->timestamps();
         });
