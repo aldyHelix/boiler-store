@@ -4,5 +4,6 @@
     "EcommerceLink": true,
     "Brand": true,
     "SignaturePlayer": true,
-    "Banner": true
+    "Banner": true,
+    "Tag": true
 }
