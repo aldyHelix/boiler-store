@@ -3,5 +3,6 @@
     "Size": true,
     "EcommerceLink": true,
     "Brand": true,
-    "SignaturePlayer": true
+    "SignaturePlayer": true,
+    "Banner": true
 }

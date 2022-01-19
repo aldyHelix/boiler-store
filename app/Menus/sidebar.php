@@ -135,6 +135,31 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.banner.index',
+        'name' => 'Banner',
+        'route' => ['administrator.master-data.banner.index', []],
+        'isActive' => 'master-data/banner*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.banner.create',
+            'title' => 'Create Banner',
+            'description' => 'User can create new banner'
+          ],
+          [
+            'gate' => 'administrator.master-data.banner.update',
+            'title' => 'Update Banner',
+            'description' => 'User can update banner'
+          ],
+          [
+            'gate' => 'administrator.master-data.banner.destroy',
+            'title' => 'Delete Banner',
+            'description' => 'User can delete banner'
+          ]
+        ],
+      ],
     ]
   ],
   [
