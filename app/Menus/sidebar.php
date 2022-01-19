@@ -185,6 +185,31 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.faq.index',
+        'name' => 'Faq',
+        'route' => ['administrator.master-data.faq.index', []],
+        'isActive' => 'master-data/faq*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.faq.create',
+            'title' => 'Create Faq',
+            'description' => 'User can create new faq'
+          ],
+          [
+            'gate' => 'administrator.master-data.faq.update',
+            'title' => 'Update Faq',
+            'description' => 'User can update faq'
+          ],
+          [
+            'gate' => 'administrator.master-data.faq.destroy',
+            'title' => 'Delete Faq',
+            'description' => 'User can delete faq'
+          ]
+        ],
+      ],
     ]
   ],
   [
