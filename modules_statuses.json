@@ -5,5 +5,6 @@
     "Brand": true,
     "SignaturePlayer": true,
     "Banner": true,
-    "Tag": true
+    "Tag": true,
+    "Faq": true
 }
