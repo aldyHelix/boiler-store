@@ -160,6 +160,31 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.tag.index',
+        'name' => 'Tag',
+        'route' => ['administrator.master-data.tag.index', []],
+        'isActive' => 'master-data/tag*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.tag.create',
+            'title' => 'Create Tag',
+            'description' => 'User can create new tag'
+          ],
+          [
+            'gate' => 'administrator.master-data.tag.update',
+            'title' => 'Update Tag',
+            'description' => 'User can update tag'
+          ],
+          [
+            'gate' => 'administrator.master-data.tag.destroy',
+            'title' => 'Delete Tag',
+            'description' => 'User can delete tag'
+          ]
+        ],
+      ],
     ]
   ],
   [
@@ -172,39 +197,28 @@ return [
     'gates' => [],
     'submenus' => [
     [
-        'gate' => 'administrator.account',
-        'name' => 'Account',
-        'description' => 'Account Management System',
-        'route' => null,
-        'isActive' => null,
+        'gate' => 'administrator.account.admin.index',
+        'name' => 'User Admin',
+        'route' => ['administrator.account.admin.index', []],
+        'isActive' => 'account/admin*',
         'id' => '',
-        'gates' => [],
-        'submenus' => [
-            [
-            'gate' => 'administrator.account.admin.index',
-            'name' => 'User Admin',
-            'route' => ['administrator.account.admin.index', []],
-            'isActive' => 'account/admin*',
-            'id' => '',
-            'gates' => [
-                    [
-                    'gate' => 'administrator.account.admin.create',
-                    'title' => 'Create admin',
-                    'description' => 'User can create new admin'
-                    ],
-                    [
-                    'gate' => 'administrator.account.admin.update',
-                    'title' => 'Update admin',
-                    'description' => 'User can update admin'
-                    ],
-                    [
-                    'gate' => 'administrator.account.admin.destroy',
-                    'title' => 'Delete account',
-                    'description' => 'User can delete account'
-                    ]
+        'gates' => [
+                [
+                'gate' => 'administrator.account.admin.create',
+                'title' => 'Create admin',
+                'description' => 'User can create new admin'
                 ],
-            ]
-        ]
+                [
+                'gate' => 'administrator.account.admin.update',
+                'title' => 'Update admin',
+                'description' => 'User can update admin'
+                ],
+                [
+                'gate' => 'administrator.account.admin.destroy',
+                'title' => 'Delete account',
+                'description' => 'User can delete account'
+                ]
+            ],
     ],
     [
         'gate' => 'administrator.access.role.index',
