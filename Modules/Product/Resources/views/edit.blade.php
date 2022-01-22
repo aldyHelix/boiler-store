@@ -1,7 +1,7 @@
 <x-ladmin-layout>
 	<x-slot name="title">Edit Product</x-slot>
 
-	<form action="{{ route('administrator.master-data.product.update', $product->id) }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('administrator.product.update', $product->id) }}" method="post" enctype="multipart/form-data">
 		@csrf
         @method('PUT')
 

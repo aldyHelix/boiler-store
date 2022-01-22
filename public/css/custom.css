@@ -101,3 +101,168 @@ tr.group {
         justify-content: center;
     }
 }
+
+a {
+    color: #3a9bdc;
+    text-decoration: none;
+    background-color: transparent
+}
+
+a:hover {
+    color: #3a9bdc;
+    text-decoration: underline
+}
+
+.text-hover-primary:hover,
+a.text-hover-primary:hover {
+    -webkit-transition: color .15s ease, background-color .15s ease, border-color .15s ease, -webkit-box-shadow .15s ease;
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease, -webkit-box-shadow .15s ease;
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease, -webkit-box-shadow .15s ease;
+    color: #3a9bdc !important
+}
+
+.form-control {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.header-mobile {
+    background-color: #074da3;
+    background-image: linear-gradient(#074da3, #001540);
+}
+
+.aside {
+    background-color: #074da3;
+    background-image: linear-gradient(#074da3, #001540);
+}
+
+.aside-menu .menu-nav>.menu-item.menu-item-active>.menu-heading,
+.aside-menu .menu-nav>.menu-item.menu-item-active>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item.menu-item-open>.menu-heading,
+.aside-menu .menu-nav>.menu-item.menu-item-open>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover>.menu-heading,
+.aside-menu .menu-nav>.menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item.menu-item-here>.menu-heading,
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item.menu-item-here>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item.menu-item-active>.menu-heading,
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item.menu-item-active>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover>.menu-heading,
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover>.menu-link {
+    background-color: #3a9bdc;
+}
+
+.aside-menu .menu-nav>.menu-item>.menu-heading .menu-text,
+.aside-menu .menu-nav>.menu-item>.menu-link .menu-text {
+    font-size: 1.075rem;
+    font-weight: 500;
+}
+
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item>.menu-heading .menu-text,
+.aside-menu .menu-nav>.menu-item .menu-submenu .menu-item>.menu-link .menu-text {
+    font-size: 1.025rem;
+    font-weight: 500;
+}
+
+.btn.btn-hover-primary.focus:not(.btn-text),
+.btn.btn-hover-primary:focus:not(.btn-text),
+.btn.btn-hover-primary:hover:not(.btn-text):not(:disabled):not(.disabled) {
+    color: #fff !important;
+    background-color: #3a9bdc !important;
+    border-color: #3a9bdc !important
+}
+
+.navi .navi-item .navi-link:hover .navi-bullet .bullet {
+    background-color: #3a9bdc;
+}
+
+.navi .navi-item .navi-link:hover .navi-text {
+    color: #3a9bdc;
+}
+
+.navi .navi-item .navi-link:hover .navi-icon i {
+    color: #3a9bdc;
+}
+
+.font-size-base {
+    font-size: 1rem !important;
+}
+
+.font-size-sm {
+    font-size: .925rem !important;
+}
+
+.font-size-xs {
+    font-size: .8rem !important;
+}
+
+.font-size-lg {
+    font-size: 1.08rem !important;
+}
+
+@media (max-width:767.98px) {
+    .footer .container div.nav {
+        margin-bottom: .75rem;
+    }
+    .footer .container div.copyright {
+        margin-bottom: .5rem;
+    }
+}
+
+@media (max-width:991.98px) {
+    .aside {
+        box-shadow: 3px 5px 12px rgb(0, 0, 0, .3);
+    }
+    .topbar {
+        box-shadow: 2px -5px 12px 5px rgb(142, 142, 142, .5);
+    }
+}
+
+.btn-success-cstm {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745
+}
+
+.separator-solid-black {
+    border-bottom: 1px solid black;
+}
+
+.card.card-custom>.card-body-cstm-top {
+    padding: 2rem 2.25rem 0rem 2.25rem;
+}
+
+.card.card-custom>.card-body-cstm-mid {
+    padding: 0.25rem 2.25rem 0.25rem 2.25rem;
+}
+
+.card.card-custom>.card-body-cstm-btm {
+    padding: 1rem 2.25rem 1rem 2.25rem;
+}
+
+.popover-body {
+    padding: 1rem;
+}
+
+ul#cstm-pagination {
+    margin-top: revert;
+}
+
+.btn-size-cstm {
+    width: 7.5rem;
+}

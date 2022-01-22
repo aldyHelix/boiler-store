@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        ladmin()->allow('administrator.master-data.product.index');
+        ladmin()->allow('administrator.product.index');
         $data['product'] = Product::with('detail')->first();
 
         return ProductDataTables::view('product::index', $data);
@@ -38,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        ladmin()->allow('administrator.master-data.product.create');
+        ladmin()->allow('administrator.product.create');
         $data['product'] = new Product();
 
         return view('product::create', $data);
@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        ladmin()->allow('administrator.master-data.product.update');
+        ladmin()->allow('administrator.product.update');
         $data['product'] = $this->repository->getProductById($id);
         return view('product::edit', $data);
     }

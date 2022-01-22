@@ -4,8 +4,8 @@
     </x-slot>
     <x-slot name="title">Product</x-slot>
     <x-slot name="buttons">
-      @can('administrator.master-data.product.create')
-        <a href="{{ route('administrator.master-data.product.create', ['back' => request()->fullUrl()]) }}" class="btn btn-sm btn-primary">
+      @can('administrator.product.create')
+        <a href="{{ route('administrator.product.create', ['back' => request()->fullUrl()]) }}" class="btn btn-sm btn-primary">
           Create Product
         </a>
       @endcan

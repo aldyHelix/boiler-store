@@ -1,7 +1,7 @@
 <x-ladmin-layout>
 	<x-slot name="title">Create Product</x-slot>
 
-	<form action="{{ route('administrator.master-data.product.store') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('administrator.product.store') }}" method="post" enctype="multipart/form-data">
 		@csrf
 
 		@include('product::_partials._form', ['product' => $product])

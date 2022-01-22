@@ -17,8 +17,6 @@ class CreateProducts extends Migration
             $table->id();
             $table->string('product_code', 100)->unique();
             $table->string('product_name', 100);
-            $table->char('condition', 1);
-            $table->smallInteger('minimal_order')->default(1);
             $table->smallInteger('product_visit')->default(1);
             $table->text('image')->nullable();
             $table->text('description')->nullable();
