@@ -1,16 +1,33 @@
-<x-ladmin-layout>
-	<x-slot name="title">Edit Product</x-slot>
+<x-base-layout>
+    <x-slot name="styles">
+        {{--
+        <link rel="stylesheet" href="{{ mix('css/custom.css') }}"> --}}
+    </x-slot>
+    <x-slot name="title">
+        <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Edit Product</h1>
+    </x-slot>
 
-	<form action="{{ route('administrator.product.update', $product->id) }}" method="post" enctype="multipart/form-data">
-		@csrf
-        @method('PUT')
+    <!--begin::Card-->
+    <div class="card">
+        <!--begin::Card body-->
+        <div class="card-body pt-6">
 
-		@include('product::_partials._form', ['product' => $product])
+            <form action="{{ route('administrator.product.update', $product->id) }}" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-		<div class="text-right">
-		  <button type="submit" class="btn btn-primary">
-			Update Product
-		  </button>
-		</div>
-	  </form>
-</x-ladmin-layout>
+                @include('product::_partials._form', ['product' => $product])
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">
+                        Update Product
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!--end::Card body-->
+    </div>
+    <!--end::Card-->
+
+</x-base-layout>

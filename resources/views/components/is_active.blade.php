@@ -1,14 +1,20 @@
-<x-ladmin-form-group name="is_active" label="Active *">
-    <div class="form-check col-sm-5 ml-2">
-        <input class="form-check-input" type="radio" name="is_active" id="is_active" value=1 checked>
-        <label class="form-check-label" for="is_active">
-          Active
+{{-- <x-ladmin-form-group name="is_active" label="Active *"> --}}
+    <!--begin::Input group-->
+    <div class="d-flex flex-stack w-lg-50">
+        <!--begin::Label-->
+        <div class="me-5">
+            <label class="fs-6 fw-bold form-label">Activate this data?</label>
+        </div>
+        <!--end::Label-->
+
+        <!--begin::Switch-->
+        <label class="form-check form-switch form-check-custom form-check-solid">
+            <input class="form-check-input" type="checkbox" value="1" checked="checked" />
+            <span class="form-check-label fw-bold text-muted">
+                Active
+            </span>
         </label>
+        <!--end::Switch-->
     </div>
-    <div class="form-check col-sm-5">
-        <input class="form-check-input" type="radio" name="is_active" id="is_active" value=0 >
-        <label class="form-check-label" for="is_active">
-            Not Active
-        </label>
-    </div>
-</x-ladmin-form-group>
+    <!--end::Input group-->
+{{-- </x-ladmin-form-group> --}}

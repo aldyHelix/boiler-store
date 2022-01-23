@@ -1,6 +1,10 @@
-<x-ladmin-layout>
-	<x-slot name="title">Edit Brand</x-slot>
-
+<x-base-layout>
+	<x-slot name="title">
+        <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Edit Brand</h1></x-slot>
+    <!--begin::Card-->
+    <div class="card">
+        <!--begin::Card body-->
+        <div class="card-body pt-6">
 	<form action="{{ route('administrator.master-data.brand.update', $brand->id) }}" method="post" enctype="multipart/form-data">
 		@csrf
         @method('PUT')
@@ -13,4 +17,8 @@
 		  </button>
 		</div>
 	  </form>
-</x-ladmin-layout>
+    </div>
+    <!--end::Card body-->
+</div>
+<!--end::Card-->
+</x-base-layout>

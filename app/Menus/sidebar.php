@@ -2,25 +2,25 @@
 
 return [
     [
-        'gate' => 'administrator.master-data.product.index',
+        'gate' => 'administrator.product.index',
         'name' => 'Product',
-        'route' => ['administrator.master-data.product.index', []],
-        'isActive' => 'master-data/product*',
+        'route' => ['administrator.product.index', []],
+        'isActive' => 'product*',
         'icon' => 'shopping-bag',
         'id' => '',
         'gates' => [
             [
-                'gate' => 'administrator.master-data.product.create',
+                'gate' => 'administrator.product.create',
                 'title' => 'Create Product',
                 'description' => 'User can create new product'
             ],
             [
-                'gate' => 'administrator.master-data.product.update',
+                'gate' => 'administrator.product.update',
                 'title' => 'Update Product',
                 'description' => 'User can update product'
             ],
             [
-                'gate' => 'administrator.master-data.product.destroy',
+                'gate' => 'administrator.product.destroy',
                 'title' => 'Delete Product',
                 'description' => 'User can delete product'
             ]

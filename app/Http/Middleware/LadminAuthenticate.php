@@ -33,7 +33,7 @@ class LadminAuthenticate extends Middleware {
     protected function redirectTo($request) {
         if (! $request->expectsJson()) {
             if(in_array(config('ladmin.auth.guard'), $request->guards)) {
-                return route('administrator.login');
+                return route('login');
             } else {
                 return route('login');
             }

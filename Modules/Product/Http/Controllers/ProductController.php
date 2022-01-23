@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Repositories\ProductRepository;
-use Modules\Product\Entities\ProductDatatables;
+use App\DataTables\ProductDataTable;
 use GuzzleHttp\Psr7\UploadedFile;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Modules\Product\Entities\Product;
@@ -24,12 +24,13 @@ class ProductController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(ProductDataTable $dataTable)
     {
         ladmin()->allow('administrator.product.index');
-        $data['product'] = Product::with('detail')->first();
+        //$data['product'] = Product::with('detail')->first();
 
-        return ProductDataTables::view('product::index', $data);
+        //return ProductDataTables::view('product::index', $data);
+        return $dataTable->render('product::index');
     }
 
     /**
