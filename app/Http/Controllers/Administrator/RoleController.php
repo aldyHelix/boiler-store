@@ -11,20 +11,20 @@ use App\DataTables\RoleDatatables;
 class RoleController extends Controller {
 
     protected $repository;
-    
+
     public function __construct(RoleRepository $repository) {
-        $this->repository = $repository; 
+        $this->repository = $repository;
     }
-  
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request, RoleDatatables $dataTable) {
         ladmin()->allow('administrator.access.role.index');
 
-        return RoleDatatables::view();
+        return $dataTable->render('vendor.ladmin.role.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class RoleController extends Controller {
                 $e->getMessage()
             ]);
         }
-        
+
     }
 
     /**
@@ -122,7 +122,7 @@ class RoleController extends Controller {
      */
     public function destroy($id) {
         ladmin()->allow('administrator.access.role.destroy');
-        
+
         try {
             $this->repository->getModel()->findOrFail($id)->delete();
             session()->flash('success', [

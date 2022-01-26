@@ -14,20 +14,20 @@ class UserAdminController extends Controller {
     protected $repository;
 
     public function __construct(UserRepository $repository) {
-        $this->repository = $repository; 
+        $this->repository = $repository;
     }
-  
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request, UserDatatables $dataTable) {
         ladmin()->allow('administrator.account.admin.index');
 
-        return UserDatatables::view('ladmin::ladmin.index', [
+        return $dataTable->render('ladmin::ladmin.index', [
             /**
-             * You can catch this data form blade or UserDatatables class 
+             * You can catch this data form blade or UserDatatables class
              * via static property self$data
              */
             'foo' => 'bar'
@@ -73,7 +73,7 @@ class UserAdminController extends Controller {
                 $e->getMessage()
             ]);
         }
-        
+
     }
 
     /**
@@ -113,7 +113,7 @@ class UserAdminController extends Controller {
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'role_id' => ['required']    
+            'role_id' => ['required']
         ]);
         try {
             $this->repository->updateUser($request, $id);
@@ -136,7 +136,7 @@ class UserAdminController extends Controller {
      */
     public function destroy($id) {
         ladmin()->allow('administrator.account.admin.destroy');
-        
+
         try {
             $this->repository->getModel()->findOrFail($id)->delete();
             session()->flash('success', [

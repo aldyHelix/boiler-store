@@ -14,20 +14,20 @@ class PermissionController extends Controller {
     protected $repository;
 
     public function __construct(RoleRepository $repository) {
-        $this->repository = $repository; 
+        $this->repository = $repository;
     }
-  
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request, PermissionDatatables $dataTable) {
         ladmin()->allow('administrator.access.permission.index');
-        
-        return PermissionDatatables::view();
+
+        return $dataTable->render('vendor.ladmin.permission.index');
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -56,7 +56,7 @@ class PermissionController extends Controller {
                 $e->getMessage()
             ]);
         }
-        
+
     }
 
     /**
@@ -73,5 +73,5 @@ class PermissionController extends Controller {
         return view('vendor.ladmin.permission.show', $data);
     }
 
-    
+
 }
