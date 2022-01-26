@@ -22,7 +22,7 @@ License: {{ theme()->getOption('product', 'license') }}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="shortcut icon" href="{{ asset(theme()->getDemo() . '/' .theme()->getOption('assets', 'favicon')) }}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     {{-- begin::Fonts --}}
     {{ theme()->includeFonts() }}
     {{-- end::Fonts --}}
@@ -58,6 +58,9 @@ License: {{ theme()->getOption('product', 'license') }}
 
     {!! $styles ?? null !!}
     @livewireStyles
+
+    <link href="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css"/>
+
     @stack('styles')
 
 </head>
@@ -65,13 +68,13 @@ License: {{ theme()->getOption('product', 'license') }}
 
 {{-- begin::Body --}}
 <body {!! theme()->printHtmlAttributes('body') !!} {!! theme()->printHtmlClasses('body') !!} {!! theme()->printCssVariables('body') !!}>
-<div id="app">
+
 @if (theme()->getOption('layout', 'loader/display') === true)
     {{ theme()->getView('layout/_loader') }}
 @endif
 
 @yield('content')
-</div>
+
 {{-- begin::Javascript --}}
 @if (theme()->hasOption('assets', 'js'))
     {{-- begin::Global Javascript Bundle(used by all pages) --}}
@@ -101,17 +104,15 @@ License: {{ theme()->getOption('product', 'license') }}
 @if (theme()->getViewMode() === 'preview')
     {{ theme()->getView('partials/trackers/_ga-tag-manager-for-body') }}
 @endif
-
-
-
+<script src="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 {!! $scripts ?? null !!}
 @stack('modals')
 
 @livewireScripts
-<script src="{{ mix('/js/app.js') }}"></script>
-<script src="{{ mix('/js/ladmin/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
-
+@yield('scripts')
 </body>
 {{-- end::Body --}}
 </html>

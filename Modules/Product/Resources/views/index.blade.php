@@ -27,10 +27,12 @@
             <!--end::Card body-->
         </div>
         <!--end::Card-->
+        {{-- Inject Scripts --}}
+@push('scripts')
+    {{ $dataTable->scripts() }}
+@endpush
+
 </x-base-layout>
 
-{{-- Inject Scripts --}}
-@section('scripts')
-    {{ $dataTable->scripts() }}
-@endsection
+
 

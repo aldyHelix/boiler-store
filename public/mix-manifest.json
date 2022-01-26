@@ -152,6 +152,5 @@
     "/demo1/plugins/custom/datatables/datatables.bundle.js": "/demo1/plugins/custom/datatables/datatables.bundle.js",
     "/demo1/plugins/custom/flatpickr/flatpickr.bundle.js": "/demo1/plugins/custom/flatpickr/flatpickr.bundle.js",
     "/demo1/plugins/custom/fullcalendar/fullcalendar.bundle.js": "/demo1/plugins/custom/fullcalendar/fullcalendar.bundle.js",
-    "/css/image.css": "/css/image.css",
-    "/js/bootstrap.js": "/js/bootstrap.js"
+    "/css/image.css": "/css/image.css"
 }

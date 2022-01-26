@@ -1,9 +1,9 @@
 <?php
 return array(
-    'index' => array(
+    'product' => array(
         'title'       => 'Dashboard',
         'description' => '',
-        'view'        => 'index',
+        'view'        => 'product::index',
         'layout'      => array(
             'page-title' => array(
                 'description' => true,
@@ -12,7 +12,7 @@ return array(
         ),
         'assets'      => array(
             'custom' => array(
-                'js' => array(),
+                'js' => array(['AAA']),
             ),
         ),
     ),
