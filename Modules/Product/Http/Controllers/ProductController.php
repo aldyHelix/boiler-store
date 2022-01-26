@@ -27,9 +27,6 @@ class ProductController extends Controller
     public function index(ProductDatatables $dataTable)
     {
         ladmin()->allow('administrator.product.index');
-        $data['product'] = Product::with('detail')->first();
-
-        //return ProductDataTables::view('product::index', $data);
         return $dataTable->render('product::index');
     }
 

@@ -23,11 +23,11 @@ class BrandController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(BrandDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.brand.index');
 
-        return BrandDataTables::view('brand::index');
+        return $dataTables->render('brand::index');
     }
 
     /**

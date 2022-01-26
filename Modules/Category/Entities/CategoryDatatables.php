@@ -3,79 +3,85 @@
   namespace Modules\Category\Entities;
 
   use Modules\Category\Entities\Category;
-  use Hexters\Ladmin\Datatables\Datatables;
-  use Hexters\Ladmin\Contracts\DataTablesInterface;
+  use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
+use Yajra\DataTables\Services\DataTable;
 
-  class CategoryDatatables extends Datatables implements DataTablesInterface {
+  class CategoryDatatables  extends DataTable {
 
     /**
-     * Datatables function
+     * Build DataTable class.
+     *
+     * @param mixed $query Results from query() method.
+     * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function render() {
-
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return $this->eloquent(Category::query())
-        ->addIndexColumn()
-        ->addColumn('action', function($item) {
-          return view('ladmin::table.action', [
-            'show' => null,
-            'edit' => [
-              'gate' => 'administrator.master-data.category.update',
-              'url' => route('administrator.master-data.category.edit', [$item->id, 'back' => request()->fullUrl()])
-            ],
-            'destroy' => [
-              'gate' => 'administrator.master-data.category.destroy',
-              'url' => route('administrator.master-data.category.destroy', [$item->id, 'back' => request()->fullUrl()]),
-            ]
-          ]);
-        })
-        ->escapeColumns([])
-        ->make(true);
+    public function dataTable($query)
+    {
+        return datatables()
+            ->eloquent($query)
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->addColumn('action', function ($item) {
+                return view('components.action-burger', compact('item'));
+            });
     }
 
     /**
-     * Datatables Option
+     * Get columns.
+     *
+     * @return array
      */
-    public function options() {
-
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return [
-        'title' => 'List Of Category',
-        'buttons' => null, // e.g : view('user.actions.create')
-        'fields' => [
-          __('No'),
-          __('ID'),
-          __('Title'),
-          __('Action')
-        ], // Table header
-        'foos' => [ // Custom data array. You can call in your blade with variable $foos
-          'bar' => 'baz',
-          'baz' => 'bar',
-        ],
-        /**
-         * DataTables Options
-         */
-        'options' => [
-          'processing' => true,
-          'serverSide' => true,
-          'ajax' => request()->fullurl(),
-          'columns' => [
-              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false, 'class' => 'datatables-number'],
-              ['data' => 'id', 'class' => 'text-center datatables-id'],
-              ['data' => 'category_title'],
-              ['data' => 'action', 'class' => 'text-center datatables-action', 'orderable' => false],
-          ]
-        ]
-      ];
-
+    protected function getColumns()
+    {
+        return [
+            Column::make('DT_RowIndex')->title(__('No')),
+            Column::make('category_code'),
+            Column::make('category_image'),
+            Column::make('category_title'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+        ];
+    }
+/**
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Product $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(Category $model)
+    {
+        return $model->newQuery();
     }
 
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html()
+    {
+        return $this->builder()
+                    ->setTableId('product-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->parameters([
+                        'buttons' => ['pdf'],
+                    ]);
+    }
+
+     /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'Product_' . date('YmdHis');
+    }
   }

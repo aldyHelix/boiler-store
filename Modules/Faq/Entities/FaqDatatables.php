@@ -3,79 +3,85 @@
   namespace Modules\Faq\Entities;
 
   use Modules\Faq\Entities\Faq;
-  use Hexters\Ladmin\Datatables\Datatables;
-  use Hexters\Ladmin\Contracts\DataTablesInterface;
+  use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
+use Yajra\DataTables\Services\DataTable;
 
-  class FaqDatatables extends Datatables implements DataTablesInterface {
+  class FaqDatatables  extends DataTable {
 
     /**
-     * Datatables function
+     * Build DataTable class.
+     *
+     * @param mixed $query Results from query() method.
+     * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function render() {
-
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return $this->eloquent(Faq::query())
-        ->addIndexColumn()
-        ->addColumn('action', function($item) {
-          return view('ladmin::table.action', [
-            'show' => null,
-            'edit' => [
-              'gate' => 'administrator.master-data.faq.update',
-              'url' => route('administrator.master-data.faq.edit', [$item->id, 'back' => request()->fullUrl()])
-            ],
-            'destroy' => [
-              'gate' => 'administrator.master-data.faq.destroy',
-              'url' => route('administrator.master-data.faq.destroy', [$item->id, 'back' => request()->fullUrl()]),
-            ]
-          ]);
-        })
-        ->escapeColumns([])
-        ->make(true);
+    public function dataTable($query)
+    {
+        return datatables()
+            ->eloquent($query)
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->addColumn('action', function ($item) {
+                return view('components.action-burger', compact('item'));
+            });
     }
 
     /**
-     * Datatables Option
+     * Get columns.
+     *
+     * @return array
      */
-    public function options() {
-
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return [
-        'title' => 'List Of Faq',
-        'buttons' => null, // e.g : view('user.actions.create')
-        'fields' => [
-          __('No'),
-          __('ID'),
-          __('Title'),
-          __('Question'),
-          __('Answer'),
-          __('Action')
-        ], // Table header
-        /**
-         * DataTables Options
-         */
-        'options' => [
-          'processing' => true,
-          'serverSide' => true,
-          'ajax' => request()->fullurl(),
-          'columns' => [
-              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false, 'class' => 'datatables-number'],
-              ['data' => 'id', 'class' => 'text-center datatables-id'],
-              ['data' => 'faq_title'],
-              ['data' => 'faq_question'],
-              ['data' => 'faq_answer'],
-              ['data' => 'action', 'class' => 'text-center datatables-action', 'orderable' => false],
-          ]
-        ]
-      ];
-
+    protected function getColumns()
+    {
+        return [
+            Column::make('DT_RowIndex')->title(__('No')),
+            Column::make('faq_title'),
+            Column::make('faq_question'),
+            Column::make('faq_answer'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+        ];
+    }
+/**
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Product $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(Faq $model)
+    {
+        return $model->newQuery();
     }
 
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html()
+    {
+        return $this->builder()
+                    ->setTableId('product-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->parameters([
+                        'buttons' => ['pdf'],
+                    ]);
+    }
+
+     /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'Product_' . date('YmdHis');
+    }
   }

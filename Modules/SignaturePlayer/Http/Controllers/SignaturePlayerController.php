@@ -23,11 +23,11 @@ class SignaturePlayerController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(SignaturePlayerDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.signature-player.index');
 
-        return SignaturePlayerDataTables::view('signatureplayer::index');
+        return $dataTables->render('signatureplayer::index');
     }
 
     /**

@@ -23,11 +23,11 @@ class TagController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(TagDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.tag.index');
 
-        return TagDataTables::view('tag::index');
+        return $dataTables->render('tag::index');
     }
 
     /**

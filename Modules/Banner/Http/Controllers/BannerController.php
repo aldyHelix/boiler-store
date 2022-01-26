@@ -23,11 +23,11 @@ class BannerController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(BannerDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.banner.index');
 
-        return BannerDataTables::view('banner::index');
+        return $dataTables->render('banner::index');
     }
 
     /**
