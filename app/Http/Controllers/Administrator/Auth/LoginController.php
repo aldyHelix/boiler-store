@@ -43,7 +43,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('ladmin::auth.login');
+        return view('auth.login');
     }
 
     /**
