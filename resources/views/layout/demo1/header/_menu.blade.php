@@ -1,8 +1,3 @@
-@php
-    $menu = bootstrap()->getHorizontalMenu();
-    \App\Core\Adapters\Menu::filterMenuPermissions($menu->items);
-@endphp
-
 <!--begin::Menu wrapper-->
 <div class="header-menu align-items-stretch"
      data-kt-drawer="true"
@@ -21,7 +16,7 @@
          id="#kt_header_menu"
          data-kt-menu="true"
     >
-        {{-- {!! $menu->build() !!} --}}
+
     </div>
     <!--end::Menu-->
 </div>
