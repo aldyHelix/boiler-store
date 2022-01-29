@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Repositories\ProductRepository;
 use Modules\Product\Entities\ProductDatatables;
+use Modules\Brand\Repositories\BrandRepository;
 use GuzzleHttp\Psr7\UploadedFile;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Modules\Product\Entities\Product;
@@ -15,9 +16,11 @@ use Modules\Product\Entities\ProductDetail;
 class ProductController extends Controller
 {
     protected $repository;
+    private $brandRepository;
 
-    public function __construct(ProductRepository $repository) {
+    public function __construct(ProductRepository $repository, BrandRepository $brandRepository) {
         $this->repository = $repository;
+        $this->brand = $brandRepository;
     }
 
     /**
@@ -38,6 +41,7 @@ class ProductController extends Controller
     {
         ladmin()->allow('administrator.product.create');
         $data['product'] = new Product();
+        $data['brand'] = $this->brand->getBrandIdAndName();
 
         return view('product::create', $data);
     }

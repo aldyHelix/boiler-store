@@ -105,14 +105,13 @@ License: {{ theme()->getOption('product', 'license') }}
     {{ theme()->getView('partials/trackers/_ga-tag-manager-for-body') }}
 @endif
 <script src="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-<script src="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+
 {!! $scripts ?? null !!}
 @stack('modals')
 
 @livewireScripts
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
-@yield('scripts')
 </body>
 {{-- end::Body --}}
 </html>

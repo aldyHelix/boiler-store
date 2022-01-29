@@ -1,7 +1,7 @@
-<div class="mr-5 ml-5 mt-3 p-2 mb-2">
+<div class="mr-5 ml-5 mt-3 p-2 mb-2 text-center">
     @livewire('product-image')
 </div>
-
+<hr>
 <x-ladmin-form-group name="product_code" label="Code *">
     <input type="text" placeholder="Product Code" class="form-control" name="product_code" id="product_code" required
         value="{{ old('product_code', $product->product_code) }}">
@@ -11,13 +11,15 @@
         value="{{ old('product_name', $product->product_name) }}">
 </x-ladmin-form-group>
 <x-ladmin-form-group name="product_url" label="Link *">
-    <input type="text" placeholder="Product Link" class="form-control" name="product_url" id="product_url" required>
+    <input type="text" placeholder="Product Link" class="form-control" name="product_url" id="product_url" required
+    value="{{ old('product_name', $product->product_link) }}">>
 </x-ladmin-form-group>
 <x-ladmin-form-group name="brand" label="Brand">
-    <select class="form-select" data-control="select2" data-placeholder="Select an option">
-        <option></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
+    <select class="form-select" data-control="select2" name="brand_id" data-placeholder="Select an option">
+        <option>------ Select Brand --------</option>
+        @foreach ($brand as $name => $id)
+            <option value="{{$id}}">{{__($name)}}</option>
+        @endforeach
     </select>
 </x-ladmin-form-group>
 <hr>
@@ -60,27 +62,19 @@
         <h5>Product Variant</h5>
         <br>
         <x-ladmin-form-group name="sizes" label="Sizes">
-            @livewire('category')
+            @livewire('size')
         </x-ladmin-form-group>
         <x-ladmin-form-group name="categories" label="Category">
             @livewire('category')
         </x-ladmin-form-group>
         <x-ladmin-form-group name="tags" label="Tag">
-            @livewire('category')
+            @livewire('tag')
         </x-ladmin-form-group>
         <x-ladmin-form-group name="models" label="Signature Player">
-            @livewire('category')
+            @livewire('signature-player')
         </x-ladmin-form-group>
     </div>
 </div>
 <hr>
 
 @include('components.is_active')
-
-@push('scripts')
-<script>
-    var input1 = document.querySelector("#kt_tagify_1");
-
-    new Tagify(input1);
-</script>
-@endpush

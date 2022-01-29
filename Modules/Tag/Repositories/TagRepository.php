@@ -42,4 +42,8 @@ class TagRepository extends Repository implements MasterRepositoryInterface {
   public function deleteTag($id){
       return $this->getTagById($id)->delete();
   }
+
+  public function getTagIdAndNameLivewire(){
+      return $this->model->selectRaw("CONCAT(id,':',tag_title) as value")->get();
+  }
 }

@@ -3,21 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Modules\Category\Repositories\CategoryRepository;
 
 class Category extends Component
 {
-    public $productList = [
-        'Fruit',
-        'Vegetable',
-        'Chocolate',
-        'Egg',
-        'Fish',
-        'Chemical',
-        'Dairy Product',
-    ];
-    public $category = [];
-    public function render()
+    public function render(CategoryRepository $category)
     {
-        return view('livewire.category');
+        $category = $category->getCategoryIdAndNameLivewire()->toJson();
+        return view('livewire.category', compact('category'));
     }
 }

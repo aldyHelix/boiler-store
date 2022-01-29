@@ -1,5 +1,7 @@
-<!--begin::Image input-->
-<div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url({{ asset('demo1/media/blank/blank-image.png') }})">
+@for ($i = 0; $i < 5; $i++)
+    <!--begin::Image input-->
+<div class="image-input image-input-empty image-input-outline" data-kt-image-input="true"
+    style="background-image: url({{ asset('demo1/media/blank/blank-image.png') }}); background-position: center; margin-right: 20px;">
     <!--begin::Image preview wrapper-->
     <div class="image-input-wrapper w-125px h-125px"></div>
     <!--end::Image preview wrapper-->
@@ -9,7 +11,7 @@
        data-kt-image-input-action="change"
        data-bs-toggle="tooltip"
        data-bs-dismiss="click"
-       title="Change avatar">
+       title="Change image">
         <i class="bi bi-pencil-fill fs-7"></i>
 
         <!--begin::Inputs-->
@@ -40,3 +42,5 @@
     <!--end::Remove button-->
 </div>
 <!--end::Image input-->
+
+@endfor

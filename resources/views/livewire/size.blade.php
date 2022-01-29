@@ -1,15 +1,15 @@
 
-<input class="form-control form-control-lg d-flex align-items-center" value="" id="kt_tagify_category" data-json="{{ $category }}"/>
+<input class="form-control form-control-lg d-flex align-items-center" value="" id="kt_tagify_size" data-json="{{ $size }}"/>
 
 @push('scripts')
 <script>
-var inputElm = document.querySelector('#kt_tagify_category');
+var inputElm = document.querySelector('#kt_tagify_size');
 
-const categoryList = JSON.parse(inputElm.dataset.json);
+const sizeList = JSON.parse(inputElm.dataset.json);
 
 // Initialize Tagify script on the above inputs
 new Tagify(inputElm, {
-    whitelist: categoryList,
+    whitelist: sizeList,
     maxTags: 10,
     dropdown: {
         maxItems: 20,           // <- mixumum allowed rendered suggestions

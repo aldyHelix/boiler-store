@@ -22,9 +22,15 @@
     <div class="card">
         <!--begin::Card body-->
         <div class="card-body pt-6">
-            <x-ladmin-datatables :fields="$fields" :options="$options" />
+            {{--
+            <x-ladmin-datatables :fields="$fields" :options="$options" /> --}}
+            {{ $dataTable->table() }}
         </div>
         <!--end::Card body-->
     </div>
     <!--end::Card-->
+    {{-- Inject Scripts --}}
+    @push('scripts')
+    {{ $dataTable->scripts() }}
+    @endpush
 </x-base-layout>
