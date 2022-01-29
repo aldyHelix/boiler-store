@@ -17,7 +17,7 @@ class CreateVoucherTable extends Migration
             $table->id();
             $table->string('voucher_code');
             $table->string('voucher_title');
-            $table->string('voucher_image');
+            $table->string('voucher_image')->nullable();
             $table->text('voucher_description');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

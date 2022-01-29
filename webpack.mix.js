@@ -225,8 +225,8 @@ function getParameters() {
 /**
  * CSS
  */
-//mix.copy('resources/css/custom.css', 'public/css/custom.css');
-mix.copy('resources/css/image.css', 'public/css/image.css');
+mix.copy('resources/css/custom.css', 'public/css/custom.css');
+//mix.copy('resources/css/image.css', 'public/css/image.css');
 /**
  * JS
  */

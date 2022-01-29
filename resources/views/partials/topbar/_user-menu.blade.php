@@ -50,11 +50,11 @@
 
     <!--begin::Menu item-->
     <div class="menu-item px-5">
-        <a href="javascript:void(0);" onclick="document.getElementById('ladmin-logout').submit()" data-reload="true" class="button-ajax menu-link px-5">
+        <a href="javascript:void(0);" onclick="document.getElementById('ladmin-logout').submit()" class="button-ajax menu-link px-5">
             {{ __('Sign Out') }}
         </a>
-        <form action="{{ route('administrator.logout') }}" id="ladmin-logout" method="post">@csrf</form>
     </div>
+    <form action="{{ route('administrator.logout') }}" id="ladmin-logout" method="post">@csrf</form>
     <!--end::Menu item-->
 </div>
 <!--end::Menu-->

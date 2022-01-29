@@ -23,6 +23,8 @@ License: {{ theme()->getOption('product', 'license') }}
     <link rel="shortcut icon" href="{{ asset(theme()->getDemo() . '/' .theme()->getOption('assets', 'favicon')) }}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link href="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
     {{-- begin::Fonts --}}
     {{ theme()->includeFonts() }}
     {{-- end::Fonts --}}
@@ -58,8 +60,6 @@ License: {{ theme()->getOption('product', 'license') }}
 
     {!! $styles ?? null !!}
     @livewireStyles
-
-    <link href="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css"/>
 
     @stack('styles')
 
@@ -104,6 +104,7 @@ License: {{ theme()->getOption('product', 'license') }}
 @if (theme()->getViewMode() === 'preview')
     {{ theme()->getView('partials/trackers/_ga-tag-manager-for-body') }}
 @endif
+
 <script src="{{ asset('demo1/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 
 {!! $scripts ?? null !!}

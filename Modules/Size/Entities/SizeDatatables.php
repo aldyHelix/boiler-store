@@ -69,9 +69,9 @@ use Yajra\DataTables\Services\DataTable;
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
-                    ->parameters([
-                        'buttons' => ['pdf'],
-                    ]);
+                    ->autoWidth(false)
+                    ->parameters(['scrollX' => true])
+                    ->addTableClass('align-middle table-row-dashed fs-6 gy-5');
     }
 
      /**

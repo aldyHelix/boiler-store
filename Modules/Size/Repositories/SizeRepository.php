@@ -44,6 +44,6 @@ class SizeRepository extends Repository implements MasterRepositoryInterface {
   }
 
   public function getSizeIdAndNameLivewire(){
-    return $this->model->selectRaw("CONCAT(id,':',size_title) as value")->get();
+    return $this->model->select('id', 'size_title as value')->get();
   }
 }

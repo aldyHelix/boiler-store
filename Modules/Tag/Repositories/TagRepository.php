@@ -44,6 +44,6 @@ class TagRepository extends Repository implements MasterRepositoryInterface {
   }
 
   public function getTagIdAndNameLivewire(){
-      return $this->model->selectRaw("CONCAT(id,':',tag_title) as value")->get();
+      return $this->model->select('id', 'tag_title as value')->get();
   }
 }

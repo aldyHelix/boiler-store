@@ -1,9 +1,9 @@
-<div 
-    @if(isset($menu['submenus'])) 
+<div
+    @if(isset($menu['submenus']))
         data-kt-menu-trigger="click"
-    @endif 
+    @endif
     class="{{ isset($menu['submenus']) ? 'menu-item menu-accordion' : 'menu-item'}} {{ request()->is( config('ladmin.prefix', 'administrator') . "/" . $menu['isActive']) ? 'here show' : null }}">
-    @php 
+    @php
         $router = 'javascript:void(0);';
         if($menu['route']) {
             $route = $menu['route'][0];
@@ -15,7 +15,7 @@
         <span class="menu-link {{ request()->is( config('ladmin.prefix', 'administrator') . "/" . $menu['isActive']) ? 'active' : null }}">
             <span class="menu-icon">
                 @if(isset($menu['icon']))
-                    {!! ladmin()->icon($menu['icon']) !!}
+                    <i class="fas fa-{{ $menu['icon'] }}"></i>
                 @endif
             </span>
             <span class="menu-title">{{ $menu['name'] }}</span>
@@ -30,11 +30,11 @@
                 {!! $viewMenu($menu['submenus']) !!}
             </div>
         @endif
-    @else 
+    @else
     <a class="menu-link {{ request()->is( config('ladmin.prefix', 'administrator') . "/" . $menu['isActive']) ? 'active' : null }}" href="{{ $router }}" id="{{ $menu['id'] ?? null }}">
         <span class="menu-icon">
             @if(isset($menu['icon']))
-                {!! ladmin()->icon($menu['icon']) !!}
+                <i class="fas fa-{{ $menu['icon'] }}"></i>
             @endif
         </span>
         <span class="menu-title">{{ $menu['name'] }}</span>

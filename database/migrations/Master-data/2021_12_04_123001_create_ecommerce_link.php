@@ -17,7 +17,7 @@ class CreateEcommerceLink extends Migration
             $table->id();
             $table->string('ecommerce_code');
             $table->string('ecommerce_title');
-            $table->string('ecommerce_image');
+            $table->string('ecommerce_image')->nullable();
             $table->text('ecommerce_description');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

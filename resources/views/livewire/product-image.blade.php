@@ -1,4 +1,5 @@
-@for ($i = 0; $i < 5; $i++)
+<div>
+    @for ($i = 0; $i < 5; $i++)
     <!--begin::Image input-->
 <div class="image-input image-input-empty image-input-outline" data-kt-image-input="true"
     style="background-image: url({{ asset('demo1/media/blank/blank-image.png') }}); background-position: center; margin-right: 20px;">
@@ -42,5 +43,6 @@
     <!--end::Remove button-->
 </div>
 <!--end::Image input-->
-
 @endfor
+</div>
+

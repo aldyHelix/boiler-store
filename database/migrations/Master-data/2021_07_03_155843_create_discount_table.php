@@ -17,7 +17,7 @@ class CreateDiscountTable extends Migration
             $table->id();
             $table->string('discount_code');
             $table->string('discount_title');
-            $table->string('discount_image');
+            $table->string('discount_image')->nullable();
             $table->integer('discount_amount')->comment('in percent');
             $table->text('discount_description');
             $table->tinyInteger('is_active')->default(1);

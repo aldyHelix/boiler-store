@@ -12,13 +12,13 @@
 </x-ladmin-form-group>
 <x-ladmin-form-group name="product_url" label="Link *">
     <input type="text" placeholder="Product Link" class="form-control" name="product_url" id="product_url" required
-    value="{{ old('product_name', $product->product_link) }}">>
+    value="{{ old('product_name', $product->product_link) }}">
 </x-ladmin-form-group>
 <x-ladmin-form-group name="brand" label="Brand">
     <select class="form-select" data-control="select2" name="brand_id" data-placeholder="Select an option">
         <option>------ Select Brand --------</option>
         @foreach ($brand as $name => $id)
-            <option value="{{$id}}">{{__($name)}}</option>
+            <option value="{{$id}}" {{ old('product_name', $product->brand_id) == $id ? 'selected' : '' }}>{{__($name)}}</option>
         @endforeach
     </select>
 </x-ladmin-form-group>
@@ -32,28 +32,28 @@
             <br>
             <x-ladmin-form-group name="qty" label="Product Quantity Stock">
                 <div class="input-group mb-5">
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"/>
+                    <input type="text" class="form-control" aria-label="Amount"/>
                     <span class="input-group-text"> pcs</span>
                 </div>
             </x-ladmin-form-group>
             <x-ladmin-form-group name="base_price" label="Base Price">
                 <div class="input-group mb-5">
                     <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"/>
+                    <input id="base" type="text" class="form-control" name="base_price" aria-label="Amount (to the nearest rupiah)"/>
                 </div>
             </x-ladmin-form-group>
 
             <x-ladmin-form-group name="selling_price" label="Retail Price">
                 <div class="input-group mb-5">
                     <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"/>
+                    <input id="retail" type="text" class="form-control" name="retail_price" aria-label="Amount (to the nearest rupiah)"/>
                 </div>
             </x-ladmin-form-group>
 
             <x-ladmin-form-group name="selling_price" label="After discount price">
                 <div class="input-group mb-5">
                     <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"/>
+                    <input id="discount" type="text" class="form-control" name="after_discount_price" aria-label="Amount (to the nearest rupiah)"/>
                 </div>
             </x-ladmin-form-group>
         </div>
@@ -78,3 +78,40 @@
 <hr>
 
 @include('components.is_active')
+
+@push('scripts')
+    <script>
+        var base = document.getElementById("base");
+        var retail = document.getElementById("retail");
+        var discount = document.getElementById("discount");
+
+        base.addEventListener("keyup", function(e) {
+            base.value = formatRupiah(this.value);
+        });
+
+        retail.addEventListener("keyup", function(e) {
+            retail.value = formatRupiah(this.value);
+        });
+
+        discount.addEventListener("keyup", function(e) {
+            discount.value = formatRupiah(this.value);
+        });
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                split = number_string.split(","),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            return prefix == undefined ? rupiah : rupiah ? rupiah : "";
+        }
+    </script>
+@endpush

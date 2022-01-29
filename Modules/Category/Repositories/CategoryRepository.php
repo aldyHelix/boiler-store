@@ -44,6 +44,6 @@ class CategoryRepository extends Repository implements MasterRepositoryInterface
   }
 
   public function getCategoryIdAndNameLivewire(){
-      return $this->model->selectRaw("CONCAT(id,':',category_title) as value")->get();
+      return $this->model->select('id', 'category_title as value')->get();
   }
 }

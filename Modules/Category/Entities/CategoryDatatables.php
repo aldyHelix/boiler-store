@@ -68,11 +68,11 @@ use Yajra\DataTables\Services\DataTable;
                     ->setTableId('product-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
+                    ->stateSave(true)
                     ->orderBy(1)
-                    ->parameters([
-                        'buttons' => ['pdf'],
-                    ]);
+                    ->autoWidth(false)
+                    ->parameters(['scrollX' => true])
+                    ->addTableClass('align-middle table-row-dashed fs-6 gy-5');
     }
 
      /**
