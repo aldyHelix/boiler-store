@@ -68,7 +68,6 @@ class ProductController extends Controller
                 $e->getMessage()
             ]);
         }
-        $stored = $this->service->insertProduct($request->all());
     }
 
     /**
