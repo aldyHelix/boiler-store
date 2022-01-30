@@ -21,4 +21,9 @@ class Tag extends Model
     {
         return \Modules\Tag\Database\factories\TagFactory::new();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(\Modules\Product\Entities\Product::class, 'product_tags', 'tag_id', 'product_id');
+    }
 }

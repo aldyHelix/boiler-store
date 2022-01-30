@@ -21,4 +21,9 @@ class Size extends Model
     {
         return \Modules\Size\Database\factories\SizeFactory::new();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(\Modules\Product\Entities\Product::class, 'product_tags', 'size_id', 'product_id');
+    }
 }

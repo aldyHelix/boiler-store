@@ -22,4 +22,9 @@ class SignaturePlayer extends Model
     {
         return \Modules\SignaturePlayer\Database\factories\SignaturePlayerFactory::new();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(\Modules\Product\Entities\Product::class, 'product_tags', 'signature_player_id', 'product_id');
+    }
 }

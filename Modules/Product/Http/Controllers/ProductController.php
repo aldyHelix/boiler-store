@@ -12,15 +12,18 @@ use GuzzleHttp\Psr7\UploadedFile;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Modules\Product\Entities\Product;
 use Modules\Product\Entities\ProductDetail;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
     protected $repository;
     private $brandRepository;
+    private $productService;
 
-    public function __construct(ProductRepository $repository, BrandRepository $brandRepository) {
+    public function __construct(ProductRepository $repository, BrandRepository $brandRepository, ProductService $productService) {
         $this->repository = $repository;
         $this->brand = $brandRepository;
+        $this->service = $productService;
     }
 
     /**
@@ -42,6 +45,7 @@ class ProductController extends Controller
         ladmin()->allow('administrator.product.create');
         $data['product'] = new Product();
         $data['brand'] = $this->brand->getBrandIdAndName();
+        $data['product_code'] = $this->service->generateProductCode();
 
         return view('product::create', $data);
     }
@@ -53,7 +57,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        try {
+            $stored = $this->service->insertProduct($request->all());
+            session()->flash('success', [
+                'Product has been created sucessfully'
+            ]);
+            return redirect()->back();
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
+        $stored = $this->service->insertProduct($request->all());
     }
 
     /**

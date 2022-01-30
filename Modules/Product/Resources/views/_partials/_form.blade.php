@@ -4,14 +4,14 @@
 <hr>
 <x-ladmin-form-group name="product_code" label="Code *">
     <input type="text" placeholder="Product Code" class="form-control" name="product_code" id="product_code" required
-        value="{{ old('product_code', $product->product_code) }}">
+        value="{{ $product_code }}" readonly>
 </x-ladmin-form-group>
 <x-ladmin-form-group name="product_name" label="Name *">
     <input type="text" placeholder="Product Name" class="form-control" name="product_name" id="product_name" required
         value="{{ old('product_name', $product->product_name) }}">
 </x-ladmin-form-group>
-<x-ladmin-form-group name="product_url" label="Link *">
-    <input type="text" placeholder="Product Link" class="form-control" name="product_url" id="product_url" required
+<x-ladmin-form-group name="product_link" label="Link *">
+    <input type="text" placeholder="Product Link" class="form-control" name="product_link" id="product_link" required
     value="{{ old('product_name', $product->product_link) }}">
 </x-ladmin-form-group>
 <x-ladmin-form-group name="brand" label="Brand">
@@ -32,7 +32,7 @@
             <br>
             <x-ladmin-form-group name="qty" label="Product Quantity Stock">
                 <div class="input-group mb-5">
-                    <input type="text" class="form-control" aria-label="Amount"/>
+                    <input type="text" class="form-control" name="qty" aria-label="Amount"/>
                     <span class="input-group-text"> pcs</span>
                 </div>
             </x-ladmin-form-group>
@@ -76,10 +76,28 @@
     </div>
 </div>
 <hr>
+<h5>Product Description</h5>
+<br>
+<textarea name="description" id="kt_docs_ckeditor_classic">
+
+</textarea>
+<hr>
 
 @include('components.is_active')
 
 @push('scripts')
+    <!--CKEditor Build Bundles:: Only include the relevant bundles accordingly-->
+    <script src="{{asset('demo1/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#kt_docs_ckeditor_classic'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script>
         var base = document.getElementById("base");
         var retail = document.getElementById("retail");

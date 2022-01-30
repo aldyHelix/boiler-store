@@ -12,6 +12,97 @@ class ProductService {
 
 	public function insertProduct($request){
 
+        $product = [
+            'product_code' => $request['product_code'],
+            'product_name' => $request['product_name'],
+            'product_link' => $request['product_link'],
+            'description' => $request['description'],
+            'is_active' => $request['is_active']
+        ];
+
+        $insertedProduct = $this->productRepository->createProduct($product);
+
+        if($insertedProduct) {
+            $idNewProduct = $insertedProduct->id;
+
+            $path = 'images/products';
+
+            if(isset($request['product_image'])){
+                $no = 1;
+
+                foreach($request['product_image'] as $image){
+
+                    $do_upload = imageUpload($image, $path ,'public', true, $no);
+
+                    if(!$do_upload){
+                        abort(500, 'Failed upload image');
+                    } else {
+                        $productImage = [
+                            'product_id' => $idNewProduct,
+                            'image_url' => $do_upload
+                        ];
+
+                        $this->productRepository->insertProductImage($productImage);
+                    }
+
+                    $no++;
+                }
+            }
+
+            $this->productRepository->insertProductDetails([
+                'product_id' => $idNewProduct,
+                'brand_id' => $request['brand_id'],
+                'qty' => $request['qty'],
+                'base_price' => str_replace('.','',$request['base_price']),
+                'retail_price' => str_replace('.','',$request['retail_price']),
+                'after_discount_price' => str_replace('.','',$request['after_discount_price'])
+            ]);
+
+            $sizes = json_decode($request['size']);
+            $categories = json_decode($request['category']);
+            $tags = json_decode($request['tag']);
+            $signatures = json_decode($request['signature']);
+
+            $sizes_id = [];
+            $categories_id = [];
+            $tags_id = [];
+            $signatures_id = [];
+
+            if(isset($sizes)){
+                foreach($sizes as $item){
+                    $sizes_id[] = $item->id;
+                }
+
+                $this->productRepository->attachProductSizes($idNewProduct, $sizes_id);
+            }
+
+            if(isset($categories)){
+                foreach($categories as $item){
+                    $categories_id[] = $item->id;
+                }
+
+                $this->productRepository->attachProductCategories($idNewProduct, $categories_id);
+            }
+
+            if(isset($tags)){
+                foreach($tags as $item){
+                    $tags_id[] = $item->id;
+                }
+
+                $this->productRepository->attachProductTags($idNewProduct, $tags_id);
+            }
+
+            if(isset($sizes)){
+                foreach($signatures as $item){
+                    $signatures_id[] = intval($item->value);
+                }
+
+                $this->productRepository->attachProductSignatures($idNewProduct, $signatures_id);
+            }
+
+        }
+
+        return true;
 	}
 
     public function updateProduct($request){
@@ -21,7 +112,7 @@ class ProductService {
     public function generateProductCode()
     {
         $new_code = '';
-        $prefix = 'PD';
+        $prefix = 'SNEAKERS';
         $period = Carbon::now()->format('Ym');
 
         $latest_code = $this->productRepository->getLatestProductCode();
