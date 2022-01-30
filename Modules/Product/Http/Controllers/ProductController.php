@@ -89,6 +89,7 @@ class ProductController extends Controller
     {
         ladmin()->allow('administrator.product.update');
         $data['product'] = $this->repository->getProductById($id);
+        $data['brand'] = $this->brand->getBrandIdAndName();
         return view('product::edit', $data);
     }
 

@@ -40,3 +40,9 @@ if (!function_exists('imageUpload')) {
         //return $imageName;
     }
 }
+
+if (!function_exists('getImage')) {
+    function getImage($filename, $module){
+        return asset('images/'.$module.'/'.$filename);
+    }
+}

@@ -9,6 +9,8 @@ class Size extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['pivot'];
+
     protected $fillable = [
         'size_code',
         'size_title',

@@ -9,6 +9,8 @@ class SignaturePlayer extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['pivot'];
+
     protected $fillable = [
         'signature_code',
         'signature_title',

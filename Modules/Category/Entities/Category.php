@@ -10,6 +10,8 @@ class Category extends Model
 {
     use HasFactory, LadminLogable;
 
+    protected $hidden = ['pivot'];
+
     protected $fillable = [
         'category_code',
         'category_title',
