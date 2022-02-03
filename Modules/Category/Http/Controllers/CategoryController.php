@@ -24,11 +24,11 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(CategoryDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.category.index');
 
-        return CategoryDataTables::view('category::index');
+        return $dataTables->render('category::index');
     }
 
     /**

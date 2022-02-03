@@ -42,4 +42,13 @@ class SignaturePlayerRepository extends Repository implements MasterRepositoryIn
   public function deleteSignaturePlayer($id){
       return $this->getSignaturePlayerById($id)->delete();
   }
+
+  public function getSignatureTag(){
+      return $this->model->select(
+          'id as value',
+          'signature_code as code',
+          'signature_player_name as title',
+          'signature_image as image'
+          )->get();
+  }
 }

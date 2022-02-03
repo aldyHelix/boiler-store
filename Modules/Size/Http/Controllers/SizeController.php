@@ -24,11 +24,11 @@ class SizeController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(SizeDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.size.index');
 
-        return SizeDataTables::view('size::index');
+        return $dataTables->render('size::index');
     }
 
     /**

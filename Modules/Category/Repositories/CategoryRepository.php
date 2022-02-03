@@ -42,4 +42,8 @@ class CategoryRepository extends Repository implements MasterRepositoryInterface
   public function deleteCategory($id){
       return $this->getCategoryById($id)->delete();
   }
+
+  public function getCategoryIdAndNameLivewire(){
+      return $this->model->select('id', 'category_title as value')->get();
+  }
 }

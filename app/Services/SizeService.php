@@ -7,15 +7,18 @@ class SizeService {
 	public function insertSize($request){
 		$data = $request->all();
         $path = 'images/size';
-        $do_upload = imageUpload($data['image'], $path ,'public');
 
-        if(!$do_upload){
-            abort(500, 'Failed upload image');
-        } else {
-            $data['size_image'] = $do_upload;
+        if(isset($data['image'])) {
+            $do_upload = imageUpload($data['image'], $path ,'public');
+
+            if(!$do_upload){
+                abort(500, 'Failed upload image');
+            } else {
+                $data['size_image'] = $do_upload;
+            }
+
+            unset($data['image']);
         }
-
-        unset($data['image']);
 
         foreach ($data as $key => $value){ $size[$key] = $value; }
 

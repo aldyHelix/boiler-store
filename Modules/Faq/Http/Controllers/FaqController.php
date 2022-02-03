@@ -23,11 +23,11 @@ class FaqController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(FaqDatatables $dataTables)
     {
         ladmin()->allow('administrator.master-data.faq.index');
 
-        return FaqDataTables::view('faq::index');
+        return $dataTables->render('faq::index');
     }
 
     /**

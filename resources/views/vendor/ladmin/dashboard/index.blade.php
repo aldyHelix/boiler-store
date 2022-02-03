@@ -1,4 +1,4 @@
-<x-ladmin-layout>
+<x-base-layout>
     <x-slot name="title">Dashboard</x-slot>
     
     <div class="row">
@@ -52,4 +52,4 @@
         </div>
     </div>
 
-</x-ladmin-layout>
+</x-base-layout>

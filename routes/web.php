@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
+use App\Http\Controllers\LadminLogableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Ladmin::route(function() {
     //Route::resource('/withdrawal', WithdrawalController::class); // Example
 });
+
+Route::group(['as' => 'system.', 'prefix' => 'system'], function() {
+    //Route::resource('/log', LogController::class)->only(['index']);
+    Route::resource('/activity', LadminLogableController::class)->only(['index', 'destroy']);
+  });

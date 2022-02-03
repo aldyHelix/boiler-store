@@ -1,48 +1,73 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<x-auth-layout>
 
-        <x-jet-validation-errors class="mb-4" />
+    <!--begin::Signin Form-->
+    <form method="POST"  action="{{ route('login') }}" class="form w-100" novalidate="novalidate"
+        id="kt_sign_in_form">
+        @csrf
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+        <!--begin::Heading-->
+        <div class="text-center mb-10">
+            <!--begin::Title-->
+            <h1 class="text-dark mb-3">
+                {{ __('Sign In to '. config('app.name')) }}
+            </h1>
+            <!--end::Title-->
+        </div>
+        <!--begin::Heading-->
+
+        <!--begin::Input group-->
+        <div class="fv-row mb-10">
+            <!--begin::Label-->
+            <label class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</label>
+            <!--end::Label-->
+
+            <!--begin::Input-->
+            <input class="form-control form-control-lg form-control-solid" type="email" name="email" autocomplete="off"
+                required autofocus />
+            <!--end::Input-->
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="fv-row mb-10">
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-stack mb-2">
+                <!--begin::Label-->
+                <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</label>
+                <!--end::Label-->
             </div>
-        @endif
+            <!--end::Wrapper-->
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            <!--begin::Input-->
+            <input class="form-control form-control-lg form-control-solid" type="password" name="password"
+                autocomplete="off" required />
+            <!--end::Input-->
+        </div>
+        <!--end::Input group-->
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+        <!--begin::Input group-->
+        <div class="fv-row mb-10">
+            <label class="form-check form-check-custom form-check-solid">
+                <input class="form-check-input" type="checkbox" name="remember" />
+                <span class="form-check-label fw-bold text-gray-700 fs-6">{{ __('Remember me') }}
+                </span>
+            </label>
+        </div>
+        <!--end::Input group-->
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+        <!--begin::Actions-->
+        <div class="text-center">
+            <!--begin::Submit button-->
+            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
+                @include('partials.general._button-indicator', ['label' => __('Continue')])
+            </button>
+            <!--end::Submit button-->
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+        </div>
+        <!--end::Actions-->
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
 
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+    </form>
+    <!--end::Signin Form-->
+
+</x-auth-layout>

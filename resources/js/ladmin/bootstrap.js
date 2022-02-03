@@ -6,7 +6,6 @@ try {
   window.Popper = require('popper.js').default;
   
   require('bootstrap');
-  require('datatables.net-bs4');
   require('@fortawesome/fontawesome-free/js/all');
 
 } catch (error) {}

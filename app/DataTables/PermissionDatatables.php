@@ -1,63 +1,86 @@
-<?php 
+<?php
 
   namespace App\DataTables;
 
   use App\Models\Role;
-  use Hexters\Ladmin\Datatables\Datatables;
-  use Hexters\Ladmin\Contracts\DataTablesInterface;
+  use Yajra\DataTables\Html\Button;
+  use Yajra\DataTables\Html\Column;
+  use Yajra\DataTables\Html\Editor\Editor;
+  use Yajra\DataTables\Html\Editor\Fields;
+  use Yajra\DataTables\Services\DataTable;
 
-  class PermissionDatatables extends Datatables implements DataTablesInterface {
-    
-    /**
-     * Datatables function
+  class PermissionDatatables extends DataTable {
+
+    public function dataTable($query)
+    {
+        return datatables()
+            ->eloquent($query)
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->addColumn('action', function($item) {
+            return view('ladmin::table.action', [
+                    'show' => [
+                        'title' => 'Assign Permission',
+                        'gate' => 'administrator.access.permission.show',
+                        'url' => route('administrator.access.permission.show', [$item->id, 'back' => request()->fullUrl()])
+                    ]
+                ]);
+            });
+    }
+
+     /**
+     * Get columns.
+     *
+     * @return array
      */
-    public function render() {
-
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return $this->eloquent(Role::query())
-        ->addColumn('action', function($item) {
-          return view('ladmin::table.action', [
-            'show' => [
-              'title' => 'Assign Permission',
-              'gate' => 'administrator.access.permission.show',
-              'url' => route('administrator.access.permission.show', [$item->id, 'back' => request()->fullUrl()])
-            ]
-          ]);
-        })
-        ->escapeColumns([])
-        ->make(true);
+    protected function getColumns()
+    {
+        return [
+            Column::make('DT_RowIndex')->title(__('No')),
+            Column::make('name'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+        ];
     }
 
     /**
-     * Datatables Option
+     * Get query source of dataTable.
+     *
+     * @param \App\Models\Product $model
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function options() {
-      
-      /**
-       * Data from controller
-       */
-      $data = self::$data;
-
-      return [
-        'title' => 'Select Role',
-        'fields' => [ __('ID'), __('Name'), __('Action')],
-        'buttons' => null,
-        'options' => [
-          'processing' => true,
-          'serverSide' => true,
-          'ajax' => request()->fullurl(),
-          'columns' => [
-              ['data' => 'id', 'class' => 'text-center'],
-              ['data' => 'name'],
-              ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
-          ]
-        ]
-      ];
-
+    public function query(Role $model)
+    {
+        return $model->newQuery();
     }
 
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html()
+    {
+        return $this->builder()
+            ->setTableId('permission-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->parameters([
+                'buttons' => ['pdf'],
+            ]);
+    }
+
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'Product_' . date('YmdHis');
+    }
   }

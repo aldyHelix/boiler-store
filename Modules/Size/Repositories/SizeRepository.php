@@ -42,4 +42,8 @@ class SizeRepository extends Repository implements MasterRepositoryInterface {
   public function deleteSize($id){
       return $this->getSizeById($id)->delete();
   }
+
+  public function getSizeIdAndNameLivewire(){
+    return $this->model->select('id', 'size_title as value')->get();
+  }
 }
