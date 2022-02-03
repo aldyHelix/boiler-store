@@ -45,6 +45,10 @@ class ProductRepository extends Repository implements MasterRepositoryInterface 
         return $this->model->findOrFail($id);
     }
 
+    public function getProductImageByIdProduct($id){
+        return $this->model->findOrFail($id)->images()->get();
+    }
+
     public function attachProductTags($id, $tags = []){
         $product = $this->model->find($id);
         return $product->tags()->attach($tags);
@@ -65,4 +69,40 @@ class ProductRepository extends Repository implements MasterRepositoryInterface 
         return $product->signatures()->attach($signatures);
     }
 
+    public function syncProductTags($id, $tags = []){
+        $product = $this->model->find($id);
+        return $product->tags()->sync($tags);
+    }
+
+    public function syncProductCategories($id, $categories = []){
+        $product = $this->model->find($id);
+        return $product->categories()->sync($categories);
+    }
+
+    public function syncProductSizes($id, $size = []){
+        $product = $this->model->find($id);
+        return $product->sizes()->sync($size);
+    }
+
+    public function syncProductSignatures($id, $signatures = []){
+        $product = $this->model->find($id);
+        return $product->signatures()->sync($signatures);
+    }
+
+    public function deleteProductImage($id){
+        return $this->model->find($id)->images()->delete();
+    }
+
+    public function deleteProduct($id){
+        $product = $this->model->find($id);
+
+        $product->images()->delete();
+        $product->detail()->delete();
+        $product->tags()->detach();
+        $product->categories()->detach();
+        $product->sizes()->detach();
+        $product->signatures()->detach();
+
+        return $product->delete();
+    }
 }

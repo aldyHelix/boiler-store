@@ -44,7 +44,7 @@
 
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Yes, Do it!</button>
+                                <button type="submit" class="btn btn-danger">Yes, Do it!</button>
                             </div>
                         </form>
                     </div>
